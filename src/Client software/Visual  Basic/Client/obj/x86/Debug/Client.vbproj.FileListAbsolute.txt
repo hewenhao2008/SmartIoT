@@ -1,0 +1,52 @@
+C:\Users\KoBE\Documents\Visual Studio 2010\Projects\Mine\MultiSocket\Client\bin\Debug\Client.exe
+C:\Users\KoBE\Documents\Visual Studio 2010\Projects\Mine\MultiSocket\Client\bin\Debug\Client.pdb
+C:\Users\KoBE\Documents\Visual Studio 2010\Projects\Mine\MultiSocket\Client\bin\Debug\Client.xml
+C:\Users\KoBE\Documents\Visual Studio 2010\Projects\Mine\MultiSocket\Client\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\KoBE\Documents\Visual Studio 2010\Projects\Mine\MultiSocket\Client\obj\x86\Debug\Client.frmClient.resources
+C:\Users\KoBE\Documents\Visual Studio 2010\Projects\Mine\MultiSocket\Client\obj\x86\Debug\Client.Resources.resources
+C:\Users\KoBE\Documents\Visual Studio 2010\Projects\Mine\MultiSocket\Client\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\KoBE\Documents\Visual Studio 2010\Projects\Mine\MultiSocket\Client\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\KoBE\Documents\Visual Studio 2010\Projects\Mine\MultiSocket\Client\obj\x86\Debug\Client.exe
+C:\Users\KoBE\Documents\Visual Studio 2010\Projects\Mine\MultiSocket\Client\obj\x86\Debug\Client.xml
+C:\Users\KoBE\Documents\Visual Studio 2010\Projects\Mine\MultiSocket\Client\obj\x86\Debug\Client.pdb
+C:\Users\Marko\Desktop\MultiSocket\Client\obj\x86\Debug\Client.exe
+C:\Users\Marko\Desktop\MultiSocket\Client\obj\x86\Debug\Client.xml
+C:\Users\Marko\Desktop\MultiSocket\Client\obj\x86\Debug\Client.pdb
+C:\Users\Marko\Desktop\MultiSocket\Client\bin\Debug\Client.exe
+C:\Users\Marko\Desktop\MultiSocket\Client\bin\Debug\Client.pdb
+C:\Users\Marko\Desktop\MultiSocket\Client\bin\Debug\Client.xml
+C:\Users\Marko\Desktop\MultiSocket\Client\obj\x86\Debug\Client.frmClient.resources
+C:\Users\Marko\Desktop\MultiSocket\Client\obj\x86\Debug\Client.Resources.resources
+C:\Users\Marko\Desktop\MultiSocket\Client\obj\x86\Debug\Client.vbproj.GenerateResource.Cache
+C:\Users\Marko\Desktop\MultiSocket\Client\bin\Debug\Database1.sdf
+C:\Users\Marko\Desktop\MultiSocket\Client\bin\Debug\Client.exe.config
+C:\Users\Marko\Desktop\Elisium client\Client\bin\Debug\Client.exe.config
+C:\Users\Marko\Desktop\Elisium client\Client\obj\x86\Debug\Client.exe
+C:\Users\Marko\Desktop\Elisium client\Client\obj\x86\Debug\Client.xml
+C:\Users\Marko\Desktop\Elisium client\Client\obj\x86\Debug\Client.pdb
+C:\Users\Marko\Desktop\Elisium client\Client\bin\Debug\Database1.sdf
+C:\Users\Marko\Desktop\Elisium client\Client\bin\Debug\Client.exe
+C:\Users\Marko\Desktop\Elisium client\Client\bin\Debug\Client.pdb
+C:\Users\Marko\Desktop\Elisium client\Client\bin\Debug\Client.xml
+C:\Users\Marko\Desktop\Elisium client\Client\obj\x86\Debug\Client.Resources.resources
+C:\Users\Marko\Desktop\Elisium client\Client\obj\x86\Debug\Client.vbproj.GenerateResource.Cache
+C:\Users\Marko\Desktop\Elisium client\Client\bin\Debug\NCalc.dll
+C:\Users\Marko\Desktop\Elisium client\Client\obj\x86\Debug\Client.vbprojResolveAssemblyReference.cache
+C:\Users\Marko\Desktop\Elisium client\Client\obj\x86\Debug\Client.DeviceManager.resources
+C:\Users\Marko\Desktop\Elisium client\Client\obj\x86\Debug\Client.PortForm.resources
+C:\Users\Marko\Desktop\Elisium client\Client\obj\x86\Debug\Client.Elisium_UI.resources
+C:\Users\Marko\Desktop\Elisium client  with AES\Client\bin\Debug\Client.exe.config
+C:\Users\Marko\Desktop\Elisium client  with AES\Client\obj\x86\Debug\Client.exe
+C:\Users\Marko\Desktop\Elisium client  with AES\Client\obj\x86\Debug\Client.xml
+C:\Users\Marko\Desktop\Elisium client  with AES\Client\obj\x86\Debug\Client.pdb
+C:\Users\Marko\Desktop\Elisium client  with AES\Client\bin\Debug\Database1.sdf
+C:\Users\Marko\Desktop\Elisium client  with AES\Client\bin\Debug\Client.exe
+C:\Users\Marko\Desktop\Elisium client  with AES\Client\bin\Debug\Client.pdb
+C:\Users\Marko\Desktop\Elisium client  with AES\Client\bin\Debug\Client.xml
+C:\Users\Marko\Desktop\Elisium client  with AES\Client\bin\Debug\NCalc.dll
+C:\Users\Marko\Desktop\Elisium client  with AES\Client\obj\x86\Debug\Client.vbprojResolveAssemblyReference.cache
+C:\Users\Marko\Desktop\Elisium client  with AES\Client\obj\x86\Debug\Client.DeviceManager.resources
+C:\Users\Marko\Desktop\Elisium client  with AES\Client\obj\x86\Debug\Client.PortForm.resources
+C:\Users\Marko\Desktop\Elisium client  with AES\Client\obj\x86\Debug\Client.Elisium_UI.resources
+C:\Users\Marko\Desktop\Elisium client  with AES\Client\obj\x86\Debug\Client.Resources.resources
+C:\Users\Marko\Desktop\Elisium client  with AES\Client\obj\x86\Debug\Client.vbproj.GenerateResource.Cache
