@@ -57,7 +57,6 @@ Module Message_Processor
             spdriver.clearbuffer() ''if clb in any way , clear buffer of spdriver
         End If
 
-
         Return 0
     End Function
 End Module

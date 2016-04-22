@@ -40,7 +40,7 @@ Public Class Device
         If dtype = DevType.SENSOR Then
             logstatechange = False 'disable logging for sensors, this is only for txtLog , not for server
         End If
-        If devstate Is Nothing Then 'devstate is optional param so it it's nothing set it..and otherwise use what's already supplied
+        If devstate Is Nothing Then 'devstate is optional param so it it's nothing set it..and otherwise use what's already suppliFed
             Select Case Me.dtype
                 Case DevType.BOOL, DevType.PWM, DevType.SENSOR, DevType.DOOR, DevType.SERVO
                     Me.devstate = New List(Of String)(New String() {"1"})

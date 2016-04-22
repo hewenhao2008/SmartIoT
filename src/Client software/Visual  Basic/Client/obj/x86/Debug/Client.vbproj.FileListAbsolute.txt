@@ -50,3 +50,18 @@ C:\Users\Marko\Desktop\Elisium client  with AES\Client\obj\x86\Debug\Client.Port
 C:\Users\Marko\Desktop\Elisium client  with AES\Client\obj\x86\Debug\Client.Elisium_UI.resources
 C:\Users\Marko\Desktop\Elisium client  with AES\Client\obj\x86\Debug\Client.Resources.resources
 C:\Users\Marko\Desktop\Elisium client  with AES\Client\obj\x86\Debug\Client.vbproj.GenerateResource.Cache
+C:\Users\Marko\Desktop\SmartIoT\src\Client software\Visual  Basic\Client\bin\Debug\Client.exe.config
+C:\Users\Marko\Desktop\SmartIoT\src\Client software\Visual  Basic\Client\obj\x86\Debug\Client.exe
+C:\Users\Marko\Desktop\SmartIoT\src\Client software\Visual  Basic\Client\obj\x86\Debug\Client.xml
+C:\Users\Marko\Desktop\SmartIoT\src\Client software\Visual  Basic\Client\obj\x86\Debug\Client.pdb
+C:\Users\Marko\Desktop\SmartIoT\src\Client software\Visual  Basic\Client\bin\Debug\Database1.sdf
+C:\Users\Marko\Desktop\SmartIoT\src\Client software\Visual  Basic\Client\bin\Debug\Client.exe
+C:\Users\Marko\Desktop\SmartIoT\src\Client software\Visual  Basic\Client\bin\Debug\Client.pdb
+C:\Users\Marko\Desktop\SmartIoT\src\Client software\Visual  Basic\Client\bin\Debug\Client.xml
+C:\Users\Marko\Desktop\SmartIoT\src\Client software\Visual  Basic\Client\bin\Debug\NCalc.dll
+C:\Users\Marko\Desktop\SmartIoT\src\Client software\Visual  Basic\Client\obj\x86\Debug\Client.vbprojResolveAssemblyReference.cache
+C:\Users\Marko\Desktop\SmartIoT\src\Client software\Visual  Basic\Client\obj\x86\Debug\Client.DeviceManager.resources
+C:\Users\Marko\Desktop\SmartIoT\src\Client software\Visual  Basic\Client\obj\x86\Debug\Client.PortForm.resources
+C:\Users\Marko\Desktop\SmartIoT\src\Client software\Visual  Basic\Client\obj\x86\Debug\Client.Elisium_UI.resources
+C:\Users\Marko\Desktop\SmartIoT\src\Client software\Visual  Basic\Client\obj\x86\Debug\Client.Resources.resources
+C:\Users\Marko\Desktop\SmartIoT\src\Client software\Visual  Basic\Client\obj\x86\Debug\Client.vbproj.GenerateResource.Cache

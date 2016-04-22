@@ -74,7 +74,7 @@ Public Class DeviceManager
                     AddHandler temp_device.StateChanged, AddressOf devStateChanged 'add handler for device state changed
                     devicelist.Add(temp_device) '' ad it to devicelist
                 Catch ex As Exception
-                    MsgBox("Can't create device") 'can't create device exit the program, something's wrong
+                    MsgBox("Can't create device" & ex.Message) 'can't create device exit the program, something's wrong
                     elui.Close()
                 End Try
             End While
@@ -96,4 +96,7 @@ Public Class DeviceManager
     End Function
 
   
+    Private Sub DeviceManager_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
+
+    End Sub
 End Class

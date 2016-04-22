@@ -15,7 +15,7 @@
     End Sub
     Public Function isDigital(p As Integer)
         If e = engine.A_MEGA Then
-            If p > 2 And p < 54 And Not megaAnalogPins.Contains(p) Then
+            If p > 1 And p < 54 And Not megaAnalogPins.Contains(p) Then
                 Return True
             Else
                 Return False

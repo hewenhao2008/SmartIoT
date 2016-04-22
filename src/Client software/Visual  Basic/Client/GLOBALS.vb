@@ -5,7 +5,7 @@ Imports System.IO.Ports
 Module GLOBALS
 #Region "VARS"
     Public comport As String
-    Public servAddr As String = "192.168.1.9" 'ip of the server
+    Public servAddr As String = "54.210.5.69" 'ip of the server
     Public servPort As Integer = 5000 'serv port to connect to
     Public sp As New SerialPort("COM1", 1000000) ' serial port for device
     Public spdriver As New Serial_Port_Driver 'communication with device

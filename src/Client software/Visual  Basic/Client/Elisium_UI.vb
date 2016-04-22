@@ -6,7 +6,7 @@ Public Class Elisium_UI
         Dim t As New Threading.Thread(AddressOf tcph.Connect) 'connect on another thread
         t.IsBackground = True 'make it background
         t.Start() 'start it
-        Threading.Thread.Sleep(1000) 'pause main thread so the login can happen, maybe better to use something
+        Threading.Thread.Sleep(2000) 'pause main thread so the login can happen, maybe better to use something
         'While login = False
         'End While
         'login would be global that the client would change to True when logged in

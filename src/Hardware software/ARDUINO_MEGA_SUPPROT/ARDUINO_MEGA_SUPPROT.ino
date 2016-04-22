@@ -20,7 +20,7 @@ byte pwmPins[] =    {2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 44, 45, 46}; //pwm 
 byte pwmValues[] =  {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}; // initialize all pwm values to 0
 byte servoPos[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}; //initialize servo positions for pwm pins 
 char ret[300]; //used in printing states back to client software 
-char buf[4]; // holding pin and value in printing states
+char buf[10]; // holding pin and value in printing states
 unsigned long sendAgain = 0; // used to determine inteval for sending current states bact to client
 void setup() {
   Serial.begin(1000000); //being serial communication
@@ -28,7 +28,9 @@ void setup() {
     pinMode(i, OUTPUT);
     digitalWrite(i, 0); // set states to 0 
   }
-
+  for(byte i = 0;i<sizeof(analogPins);i++){
+    pinMode(analogPins[i],INPUT); // set them as inputs anyway
+  }
   sendAgain = millis(); //  not needed ? 
 }
 void loop() {
@@ -123,17 +125,17 @@ void printAnalogStates() {
   strcpy(ret,"<an>");
   for (byte i = 0; i < sizeof(analogPins); i++) {
     if (i != sizeof(analogPins) - 1) {
-      snprintf(buf, sizeof buf, "%d", analogPins[i]);
+      snprintf(buf, sizeof buf, "%i", analogPins[i]);
       strcat(ret, buf);
       strcat(ret, ":");
-      snprintf(buf, sizeof buf, "%d", analogRead(analogPins[i]));
+      snprintf(buf, sizeof buf, "%i", analogRead(analogPins[i]));
       strcat(ret, buf);
       strcat(ret, ",");
     } else {
-      snprintf(buf, sizeof buf, "%d", analogPins[i]);
+      snprintf(buf, sizeof buf, "%i", analogPins[i]);
       strcat(ret, buf);
       strcat(ret, ":");
-      snprintf(buf, sizeof buf, "%d", analogRead(analogPins[i]));
+      snprintf(buf, sizeof buf, "%i", analogRead(analogPins[i]));
       strcat(ret, buf);
       strcat(ret, "</an>\n");
     }
@@ -144,23 +146,22 @@ void printPwmStates() {
   strcpy(ret, "<pwm>");
   for (byte i = 0; i < sizeof(pwmPins); i++) {
     if (i != sizeof(pwmPins) - 1) {
-      snprintf(buf, sizeof buf, "%d", pwmPins[i]);
+      snprintf(buf, sizeof buf, "%i", pwmPins[i]);
       strcat(ret, buf);
       strcat(ret, ":");
-      snprintf(buf, sizeof buf, "%d", pwmValues[i]);
+      snprintf(buf, sizeof buf, "%i", pwmValues[i]);
       strcat(ret, buf);
       strcat(ret, ",");
     } else {
-      snprintf(buf, sizeof buf, "%d", pwmPins[i]);
+      snprintf(buf, sizeof buf, "%i", pwmPins[i]);
       strcat(ret, buf);
       strcat(ret, ":");
-      snprintf(buf, sizeof buf, "%d", pwmValues[i]);
+      snprintf(buf, sizeof buf, "%i", pwmValues[i]);
       strcat(ret, buf);
       strcat(ret, "</pwm>\n");
     }
   }
   Serial.print(ret);
-  delay(1);
 }
 void printDigitalStates() { // only this goes from 2 to 53 .. 
   strcpy(ret, "<ds>");
@@ -182,29 +183,27 @@ void printDigitalStates() { // only this goes from 2 to 53 ..
     }
   }
   Serial.print(ret);
-  delay(1);
 }
 void printServoStates() {
   strcpy(ret, "<servo>");
   for (byte i = 0; i < sizeof(servoPos); i++) {
     if (i != sizeof(servoPos) - 1) {
-      snprintf(buf, sizeof buf, "%d", pwmPins[i]);
+      snprintf(buf, sizeof buf, "%i", pwmPins[i]);
       strcat(ret, buf);
       strcat(ret, ":");
-      snprintf(buf, sizeof buf, "%d", servoPos[i]);
+      snprintf(buf, sizeof buf, "%i", servoPos[i]);
       strcat(ret, buf);
       strcat(ret, ",");
     } else {
-      snprintf(buf, sizeof buf, "%d", pwmPins[i]);
+      snprintf(buf, sizeof buf, "%i", pwmPins[i]);
       strcat(ret, buf);
       strcat(ret, ":");
-      snprintf(buf, sizeof buf, "%d", servoPos[i]);
+      snprintf(buf, sizeof buf, "%i", servoPos[i]);
       strcat(ret, buf);
       strcat(ret, "</servo>\n");
     }
   }
   Serial.print(ret);
-  delay(1);
 }
 int digitalReadOutputPin(uint8_t pin) //used to get pin state
 {
