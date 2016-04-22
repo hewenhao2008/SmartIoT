@@ -1,7 +1,19 @@
-Initial commit...
+#SmartIoT project
 
-The idea behind this project is to write an interface to Arduino, and other
-microcontroller directly from the web,with server located in the cloud,
-the users should be able to access their house
-from any location in the world. Connection between client and server is encrypted
-with AES128 encryption. It should be written in as many languages as possible :)
+The idea about this project is to have devices attached to Arduino microcontroller( for now) directly controlled from web page.
+The main program feature should be high modularity and portabillity.
+###So far :
+- Visual Basic client 
+- Python server
+- Arduino Mega support script
+- Web interface
+
+
+The program is already operating pretty good. Need fixes in web user interface and adding GUI to PWM,DOOR,RGB,SERVO devices, and more we'll be later adding. I'd like it to be written in as many programming languages as possible and to be well commented on every language, so the newbie users can grasp all the concepts from it
+
+###Should be done : 
+- Web iterface redesign
+- Better encription
+- Performance optimization, although it's satisfying for now
+- Rewrite a program in a couple of languages
+- Add more drivers for different devices
