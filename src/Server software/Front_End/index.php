@@ -22,7 +22,7 @@ header("Location: admin.php");
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
-	
+
 	<link rel="stylesheet" href="main.css"/>
     <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
           page. However, you can choose any other skin. Make sure you
@@ -33,6 +33,7 @@ header("Location: admin.php");
 	var uid = "<?php echo $_SESSION['logged_in']; ?>";
 	var passwd = "<?php echo $_SESSION['pass'];?>";
 	</script>
+<script src="plugins/jscolorpicker/jscolor.min.js"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -135,8 +136,8 @@ header("Location: admin.php");
           <ul class="sidebar-menu">
             <li class="header">Opcije</li>
             <!-- Optionally, you can add icons to the links -->
-            <li class="active"><a href="#"><i class="fa fa-gear"></i> <span>Uredjaji</span></a></li>
-            <li><a href="#"><i class="fa fa-gear"></i> <span>Postavke okidaca</span></a></li>
+            <li class="active"><a href="#"><i class="fa fa-gear"></i> <span>Devices</span></a></li>
+            <li><a href="#"><i class="fa fa-gear"></i> <span>Triggers setup</span></a></li>
 			<!--
             <li class="treeview">
               <a href="#"><i class="fa fa-link"></i> <span>Opcije naloga</span> <i class="fa fa-angle-left pull-right"></i></a>
@@ -156,8 +157,8 @@ header("Location: admin.php");
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            Menadzer uredjaja
-            <small>Uredjaji i njihova stanja -> </small>
+            Device manager
+            <small>Devices and their states </small>
           </h1>
       
         </section>
@@ -165,7 +166,9 @@ header("Location: admin.php");
         <!-- Main content -->
         <section class="content">
 				<section class="device_container">
-					<div class="row"></div>
+					<div class="row">
+					
+					</div>
 				</section>
           <!-- Your Page Content Here -->
 
@@ -176,10 +179,10 @@ header("Location: admin.php");
       <footer class="main-footer">
         <!-- To the right -->
         <div class="pull-right hidden-xs">
-           Vas dom je nasa briga!
+           Your home is our care!
         </div>
         <!-- Default to the left -->
-        <strong>Copyright &copy; 2015 <a href="#">MMEL</a>.</strong> All rights reserved.
+        <strong>Copyright &copy; 2016 <a href="#">Open Source Community</a>.</strong> All rights reserved.
       </footer>
 
       <!-- Add the sidebar's background. This div must be placed
