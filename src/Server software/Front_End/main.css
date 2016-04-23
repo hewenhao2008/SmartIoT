@@ -2,22 +2,29 @@
 	background-color:rgba(0,0,0,0.5);
 	margin:10px;
 	padding:10px;
-
+	margin-top:20px;
+	min-height:40%;
 }
+
 .info_cont{
 	position:relative;
 	margin:0 auto;
 	background:rgba(0,0,255,0.2);
-	width:90%;
+	width:95%;
 	padding:10px;
 	color:white;
 }
 .mogucnosti{
 	position:relative;
 	margin:10px auto;
-	
 	background:rgba(255,0,0,0.2);
 	width:90%;
 	padding:10px;
 	color:white;
+}
+input{
+	color:black;
+}
+.btn{
+	margin:5px auto;
 }
