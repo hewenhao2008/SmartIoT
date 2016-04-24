@@ -23,7 +23,7 @@ char ret[300]; //used in printing states back to client software
 char buf[10]; // holding pin and value in printing states
 unsigned long sendAgain = 0; // used to determine inteval for sending current states bact to client
 void setup() {
-  Serial.begin(1000000); //being serial communication
+  Serial.begin(115200); //being serial communication
   for (byte i = 2; i < 54; i++) {  //suppose all pins are output for now, don't touch rx, tx
     pinMode(i, OUTPUT);
     digitalWrite(i, 0); // set states to 0 
@@ -53,7 +53,7 @@ void loop() {
     while (Serial.available() > 0) {
       input[index] = Serial.read();
       index++; // next char
-      delayMicroseconds(500); // commands will be strings so we have to be sure that every message arrives in good shape
+      delayMicroseconds(600); // commands will be strings so we have to be sure that every message arrives in good shape
     }
 
     char *pch; //try to parse data in format x1:x2:x3 , maybe later we'll use more but for now..
@@ -83,7 +83,6 @@ void loop() {
               analogWrite(atoi(pin), atoi(state));
               pwmValues[i] = atoi(state); // change state in pwmValues array, because it's used for sending states
               Serial.println("<s>OK</s>"); //return OK
-
             }
           }
 
@@ -105,7 +104,8 @@ void loop() {
         } else { // command not found 
           Serial.println("Wrong :P"); // means nothing, maybe say to program the function does not exist
         }
-        Serial.flush(); //flush serial buffer.
+      delay(10);
+      Serial.flush();
       }
 
 

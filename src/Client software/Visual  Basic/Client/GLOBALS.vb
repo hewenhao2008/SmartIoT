@@ -7,7 +7,8 @@ Module GLOBALS
     Public comport As String
     Public servAddr As String = "54.210.5.69" 'ip of the server
     Public servPort As Integer = 5000 'serv port to connect to
-    Public sp As New SerialPort("COM1", 1000000) ' serial port for device
+    Public Const bRate As Integer = 115200 'device baud rate
+    Public sp As New SerialPort("COM1", bRate) ' serial port for device
     Public spdriver As New Serial_Port_Driver 'communication with device
     Public cp As New AESCrypto 'crypto provider for aes128
     Public con As SqlCeConnection = New SqlCeConnection("Data Source = DataBase1.sdf") 'connection to database

@@ -3,7 +3,7 @@ Imports Client.Message_Processor
 
 Public Class Serial_Port_Driver
     Public Event dataRecived(data As String)
-    Public Function Connect(Optional comport_name As String = "COM1", Optional baudRate As Integer = 1000000)
+    Public Function Connect(Optional comport_name As String = "COM1", Optional baudRate As Integer = brate)
         sp.PortName = comport_name 'port name
         sp.BaudRate = baudRate 'port baudrate
         Try
@@ -14,6 +14,8 @@ Public Class Serial_Port_Driver
                 Return True 'return true, because successful connection
             End If
         Catch ex As Exception
+            MsgBox("Can't connect to device. Exiting!")
+            elui.Close()
             Return False
         End Try
         Return False
@@ -25,7 +27,8 @@ Public Class Serial_Port_Driver
         ProcesSPMessage(data) 'process serial port messages
     End Sub
     Public Sub Send(msg As String)
-        sp.WriteLine(msg) 'writeline to serial port 
+        sp.Write(msg) 'writeline to serial port 
+        elui.Log("Sent to serial device : " & msg) 'log what we passed
     End Sub
     Public Sub clearbuffer()
         sp.DiscardInBuffer() 'clear in buffer 

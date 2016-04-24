@@ -83,6 +83,7 @@ Public Class TCP_Handler
             ReDim byteData(0) ' get bytedata to 0 again
             clientSocket.BeginReceive(byteData, 0, byteData.Length, SocketFlags.None, New AsyncCallback(AddressOf OnRecieve), clientSocket) 'recieve again
         Catch e As SocketException
+            clientSocket.Dispose()
             elui.Log("Error : " & e.Message) 'log error
         End Try
 
@@ -95,6 +96,7 @@ Public Class TCP_Handler
             If Not clientSocket Is Nothing Then
                 clientSocket.Disconnect(False)
             End If
+            clientSocket.Dispose()
             elui.Log("Disconnected while reading from server!") 'log error on disconnect
         End Try
 
@@ -112,7 +114,7 @@ Public Class TCP_Handler
                 clientSocket.Dispose()
                 clientSocket = Nothing
             End If
-
+            clientSocket.Dispose()
         End Try
 
 

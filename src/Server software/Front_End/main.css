@@ -1,9 +1,10 @@
 .device{
 	background-color:rgba(0,0,0,0.5);
 	margin:10px;
-	padding:10px;
+	padding:20px;
 	margin-top:20px;
 	min-height:40%;
+	float:left;
 }
 
 .info_cont{
@@ -15,7 +16,6 @@
 	color:white;
 }
 .mogucnosti{
-	position:relative;
 	margin:10px auto;
 	background:rgba(255,0,0,0.2);
 	width:90%;
@@ -24,6 +24,7 @@
 }
 input{
 	color:black;
+	max-width:80%;
 }
 .btn{
 	margin:5px auto;

@@ -8,7 +8,7 @@
     Public Sub Tick()
         currenttime += 1
         Threading.Thread.Sleep(1)
-        If currenttime >= timeout_time Then
+        If currenttime = timeout_time Then
             mystate = True
         End If
     End Sub
@@ -17,5 +17,6 @@
     End Function
     Public Sub reset()
         currenttime = 0
+        mystate = False
     End Sub
 End Class

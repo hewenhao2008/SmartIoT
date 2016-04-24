@@ -53,7 +53,7 @@ Module Message_Processor
         If msg.Contains("OK") Then '' device returned ok ? this doesn't work everytime .. loosing data is bug, so while's with this should have timeour
             okawait = False
         End If
-        If msg.Contains("clb") Then
+        If msg.ToLower.Contains("clb") Then
             spdriver.clearbuffer() ''if clb in any way , clear buffer of spdriver
         End If
 

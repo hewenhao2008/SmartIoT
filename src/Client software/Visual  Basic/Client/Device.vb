@@ -9,7 +9,7 @@ Public Class Device
 #Region "DEVICE_COMMANDS AND CONSTANTS"
     Public OUTPUT = "0"
     Public INPUT = "1"
-    Const timeout_time As Integer = 400
+    Const timeout_time As Integer = 200
 #End Region
     Public Enum DevType
         BOOL = 0 'can only be 1 or 0
@@ -79,10 +79,13 @@ Public Class Device
                                                     End Function) Then
                     Me.pin = pin
                     For Each i As Integer In pin
-                        '  okawait = True 'here's the example of okawait :)
+                        okawait = True 'here's the example of okawait :)
+                        timeout.reset()
                         spdriver.Send(String.Join(":", New String() {"pinMode", i, OUTPUT}))
-                        'While okawait
-                        'End While
+                        While okawait And Not timeout.hasTimedOut
+                            timeout.Tick()
+                        End While
+                        timeout.reset()
                     Next
                 End If
             ElseIf type = DevType.SENSOR Then
@@ -187,48 +190,77 @@ Public Class Device
         If Me.devid = dev_id Then
             If Me.dtype = DevType.BOOL Then
                 If state = "0" Or state = "1" Then
+
+BooleanError:
                     okawait = True
+                    timeout.reset()
                     spdriver.Send(String.Join(":", New String() {"digitalWrite", Me.pin(0), state}))
                     While okawait And Not timeout.hasTimedOut
                         timeout.Tick()
                     End While
+                    If timeout.hasTimedOut Then
+                        GoTo BooleanError
+                        elui.Log("Request timed out ! BooleanError")
+                    End If
                     timeout.reset()
                 End If
             ElseIf Me.dtype = DevType.RGB Then
                 Try
                     Dim color As Color = ConvertToRbg(state)
+           
+RGBError_R:
                     okawait = True
+                    timeout.reset()
                     spdriver.Send(String.Join(":", New String() {"analogWrite", Me.pin(0), color.R}))
                     While okawait And Not timeout.hasTimedOut
                         timeout.Tick()
                     End While
-                    timeout.reset()
+                    If timeout.hasTimedOut Then
+                        GoTo RGBError_R
+                        elui.Log("RGB_R ERROR")
+                    End If
+RGBError_G:
                     okawait = True
+                    timeout.reset()
                     spdriver.Send(String.Join(":", New String() {"analogWrite", Me.pin(1), color.G}))
                     While okawait And Not timeout.hasTimedOut
                         timeout.Tick()
                     End While
+                    If timeout.hasTimedOut Then
+                        GoTo RGBError_G
+                        elui.Log("RGB_B ERROR")
+                    End If
+RGBError_B:
                     timeout.reset()
                     okawait = True
                     spdriver.Send(String.Join(":", New String() {"analogWrite", Me.pin(2), color.B}))
                     While okawait And Not timeout.hasTimedOut
                         timeout.Tick()
                     End While
+                    If timeout.hasTimedOut Then
+                        GoTo RGBError_B
+                        elui.Log("RGB_B ERROR")
+                    End If
                     timeout.reset()
-                    Console.WriteLine(String.Join(":", New String() {color.R, color.G, color.B}))
-                Catch
+                    Console.WriteLine(String.Join("--", New String() {color.R, color.G, color.B}))
+                Catch ex As Exception
+                    Console.WriteLine(ex.Message)
                 End Try
 
             ElseIf Me.dtype = DevType.PWM Then
                 Try
+PWM_Error:
                     Dim pwm As Integer = Int(state)
                     If pwm >= 0 And pwm <= 255 Then
                         okawait = True
+                        timeout.reset()
                         spdriver.Send(String.Join(":", New String() {"analogWrite", Me.pin(0), pwm}))
                         While okawait And Not timeout.hasTimedOut
                             timeout.Tick()
                         End While
-                        timeout.reset()
+                        If timeout.hasTimedOut Then
+                            GoTo PWM_Error
+                        End If
                     End If
                 Catch ex As Exception
                     Console.WriteLine(ex.Message)

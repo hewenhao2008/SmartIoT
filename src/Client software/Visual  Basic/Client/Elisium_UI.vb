@@ -5,11 +5,9 @@ Public Class Elisium_UI
     Private Sub frmClient_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
         tcph.Connect() 'connect on one thread..it's async
         'login would be global that the client would change to True when logged in
+
         If Not comport = Nothing Then 'if the port is chosen, and it must be, try to connect to device
-            If Not spdriver.Connect(comport) Then 'if can't connect message the user and exit app
-                MsgBox("Can't connect to device! Closing program")
-                Me.Close()
-            End If
+            spdriver.Connect(comport)
         End If
         dm.Populate_Device_List() 'after we connected to server, connected to device, populate device list from Database using DeviceManager class..
 
