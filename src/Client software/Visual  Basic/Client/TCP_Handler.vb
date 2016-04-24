@@ -51,6 +51,7 @@ Public Class TCP_Handler
             AddHandler ping.Elapsed, AddressOf pingServer 'when tick, pingServer()
             ping.Start() 'start timer
         Catch e As Exception
+            clientSocket.Dispose()
             If MessageBox.Show("Error on connection, try again?", "Error", MessageBoxButtons.OKCancel) = DialogResult.OK Then
                 elui.Log("Allowed exception while connection") 'log 
                 Connect() ' connect again
@@ -100,16 +101,16 @@ Public Class TCP_Handler
     End Sub
     Public Sub Send(message As String)
         Try
-            message = cp.Encrypt(message) 'encrypt message using aes
-            If clientSocket.Connected Then
+            If Not clientSocket Is Nothing And clientSocket.Connected Then
+                message = cp.Encrypt(message) 'encrypt message using aes
                 clientSocket.Send(Encoding.ASCII.GetBytes(message & vbNewLine)) 'send it and new line
-            Else
-                Throw New Exception("You're not connected")
             End If
         Catch e As Exception
             elui.Log("Unsuccessful sending of data, disconnecting!")
             If Not clientSocket Is Nothing Then
                 clientSocket.Disconnect(False)
+                clientSocket.Dispose()
+                clientSocket = Nothing
             End If
 
         End Try
@@ -135,10 +136,15 @@ Public Class TCP_Handler
     End Sub
     Private Sub login(uname As String, passwd As String)
         Me.Send(String.Join(":", New String() {uname, passwd, "[]"}))
+        logged_in = True
         elui.Log("Logovan sa parametrima : " & String.Join(":", New String() {uname, passwd}))
-        Threading.Thread.Sleep(1400)
         dm.Server_Update_Device_List()
 
     End Sub
-
+    Public Function isConnected()
+        If clientSocket.Connected And Not clientSocket Is Nothing Then
+            Return True
+        End If
+        Return False
+    End Function
 End Class

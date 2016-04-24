@@ -9,7 +9,7 @@ Public Class Device
 #Region "DEVICE_COMMANDS AND CONSTANTS"
     Public OUTPUT = "0"
     Public INPUT = "1"
-
+    Const timeout_time As Integer = 400
 #End Region
     Public Enum DevType
         BOOL = 0 'can only be 1 or 0
@@ -31,6 +31,7 @@ Public Class Device
     Public logstatechange As Boolean = True 'default of device is to log state change
     Public devstate_string As String = "" ' string that combines the pin states in right format to send to server and devmgr
     Public formula As String = "" 'formula to put input from controller trough. Ussualy used in analog devices to have meaningful output
+    Private timeout As New TimeItOut(timeout_time)
     Sub New(devname As String, pin As List(Of Integer), type As Integer, devid As Integer, Optional devstate As List(Of String) = Nothing, Optional fla As String = Nothing)
         Me.devname = devname 'set dev name
         Me.dtype = type 'set dev type
@@ -129,6 +130,7 @@ Public Class Device
     End Function
 
     Private Function changeInnerState(dpin As Integer, state As String)
+
         If Me.dtype = DevType.BOOL Or Me.dtype = DevType.PWM Or Me.dtype = DevType.SENSOR Then 'one pin things
             If Not Me.devstate(0) = state Then 'if state changed
                 Me.devstate(0) = state
@@ -177,7 +179,6 @@ Public Class Device
                 Me.devstate(0) = state
             End If
         End If
-
         Return 0
     End Function
     Public Function changeState(dev_id As String, state As String)
@@ -186,20 +187,34 @@ Public Class Device
         If Me.devid = dev_id Then
             If Me.dtype = DevType.BOOL Then
                 If state = "0" Or state = "1" Then
+                    okawait = True
                     spdriver.Send(String.Join(":", New String() {"digitalWrite", Me.pin(0), state}))
+                    While okawait And Not timeout.hasTimedOut
+                        timeout.Tick()
+                    End While
+                    timeout.reset()
                 End If
             ElseIf Me.dtype = DevType.RGB Then
                 Try
                     Dim color As Color = ConvertToRbg(state)
                     okawait = True
                     spdriver.Send(String.Join(":", New String() {"analogWrite", Me.pin(0), color.R}))
-                    Threading.Thread.Sleep(500) 'should be solved with okawait
+                    While okawait And Not timeout.hasTimedOut
+                        timeout.Tick()
+                    End While
+                    timeout.reset()
                     okawait = True
                     spdriver.Send(String.Join(":", New String() {"analogWrite", Me.pin(1), color.G}))
-                    Threading.Thread.Sleep(500)
+                    While okawait And Not timeout.hasTimedOut
+                        timeout.Tick()
+                    End While
+                    timeout.reset()
                     okawait = True
                     spdriver.Send(String.Join(":", New String() {"analogWrite", Me.pin(2), color.B}))
-                    Threading.Thread.Sleep(500)
+                    While okawait And Not timeout.hasTimedOut
+                        timeout.Tick()
+                    End While
+                    timeout.reset()
                     Console.WriteLine(String.Join(":", New String() {color.R, color.G, color.B}))
                 Catch
                 End Try
@@ -208,7 +223,12 @@ Public Class Device
                 Try
                     Dim pwm As Integer = Int(state)
                     If pwm >= 0 And pwm <= 255 Then
+                        okawait = True
                         spdriver.Send(String.Join(":", New String() {"analogWrite", Me.pin(0), pwm}))
+                        While okawait And Not timeout.hasTimedOut
+                            timeout.Tick()
+                        End While
+                        timeout.reset()
                     End If
                 Catch ex As Exception
                     Console.WriteLine(ex.Message)
@@ -216,9 +236,19 @@ Public Class Device
             ElseIf Me.dtype = DevType.DOOR Then
                 state = state.Replace(vbCr, "").Replace(vbLf, "")
                 If state = "OPEN" Then
+                    okawait = True
                     spdriver.Send(String.Join(":", New String() {"servoMove", Me.pin(0), 165}))
+                    While okawait And Not timeout.hasTimedOut
+                        timeout.Tick()
+                    End While
+                    timeout.reset()
                 ElseIf state = "CLOSE" Then
+                    okawait = True
                     spdriver.Send(String.Join(":", New String() {"servoMove", Me.pin(0), 65}))
+                    While okawait And Not timeout.hasTimedOut
+                        timeout.Tick()
+                    End While
+                    timeout.reset()
                 End If
             End If
         End If

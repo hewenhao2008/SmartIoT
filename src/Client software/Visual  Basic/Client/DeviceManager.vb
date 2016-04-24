@@ -41,14 +41,11 @@ Public Class DeviceManager
         result = "["
         result &= Join(device_info.ToArray, ",")
         result &= "]"
-        Try
-            tcph.Send("ServUDL:" & result) 'servudl stands for server update device list. the format it accepts is python list, because i did python bakend, but if 
+
+        tcph.Send("ServUDL:" & result) 'servudl stands for server update device list. the format it accepts is python list, because i did python backend, but if 
             'needed I'll implement format for other server languages, but this project aims to be written on many languages
             ' so [[devid,devstate,devtype,devname],[devid1,devstate1,devtype1,devname1],....]
-        Catch ex As Exception
-            MsgBox("Something wrong while sending data! Exiting!")
-            elui.Close()
-        End Try
+
 
 
     End Sub
@@ -95,7 +92,6 @@ Public Class DeviceManager
         Return Int(conv) 'just return the int :)
     End Function
 
-  
     Private Sub DeviceManager_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
 
     End Sub

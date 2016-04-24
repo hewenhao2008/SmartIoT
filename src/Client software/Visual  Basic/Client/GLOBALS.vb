@@ -17,8 +17,8 @@ Module GLOBALS
     Public dm As New DeviceManager 'global device manager
     Public elui As New Elisium_UI ' global user interface
     Public tcph As New TCP_Handler ' our global tcp handler
+    Public logged_in As Boolean = False
     Public pingInterval = 7000 'ping interval for ping function in tcp handler
-
     Public u_id As String = "1" 'user id for logging in
     Public passwd As String = "cikcamokram98" ' password for logging in
 #End Region

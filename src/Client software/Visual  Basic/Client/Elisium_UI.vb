@@ -3,12 +3,7 @@ Imports Client.GLOBALS
 Public Class Elisium_UI
     Delegate Sub _Log(msg As String)
     Private Sub frmClient_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-        Dim t As New Threading.Thread(AddressOf tcph.Connect) 'connect on another thread
-        t.IsBackground = True 'make it background
-        t.Start() 'start it
-        Threading.Thread.Sleep(3000) 'pause main thread so the login can happen, maybe better to use something
-        'While login = False
-        'End While
+        tcph.Connect() 'connect on one thread..it's async
         'login would be global that the client would change to True when logged in
         If Not comport = Nothing Then 'if the port is chosen, and it must be, try to connect to device
             If Not spdriver.Connect(comport) Then 'if can't connect message the user and exit app
