@@ -4,15 +4,17 @@ The idea about this project is to have devices attached to Arduino microcontroll
 The main program feature should be high modularity and portabillity.
 ##How to set up:
    - Download zip and unzip it under folder SmartIoT in your web server root
-     - If *python* 2.7 not installed, install it using ```sudo apt-get install python```
+     - If *python* 2.7 not installed, install it using ```sudo apt-get install python``` if on Linux, or from https://www.python.org if on Windows.
      - Now use pip to install next requirements:
-          - <b>Tornado</b>
-          - <b>PyCrypto</b>
-     - After that go to directory Server software/Back_Ends/Python and run PythonServer.py - ```python PythonServer.py```
-     - Use client software to connect to device and to server, just build it with yours **server ip**, your **user id**, and your **password**. Change device database to your needs.
-     - Change your login credentials in mysql database ```smartiot``` in ```user_login``` table to fit your username and password
+          - Tornado
+          - PyCrypto [ from http://www.voidspace.org.uk/python/modules.shtml#pycrypto on Windows ]
+          - After that go to directory Server software/Back_Ends/Python and run PythonServer.py - <br> ```python PythonServer.py```
+     - Upload support script for your preffered Arduino board.
+     - Yu'll have for now to compile VB client with your server_ip, user_id, passwd, and devices database [edit it to fit your devices needs, but for now you have only BOOL (ON/OFF devices) , PWM(0-255 that defines pulse width), RGB(HEX color as param, but really for PWM devices), DOOR("OTVORI" - stands for open, "ZATVORI"- stands for close, essentialy SERVO device)
+     - After that run it and connect to Arduino, It will connect to python server alone..
+     - Change your login credentials in mysql database  ```pametnakuca``` in ```user_login``` table to fit your username and password
      - Go to web location http://your_server_ip/SmartIoT
-     - Log in with your credetials and you're all done 
+     - Log in with your credetials and you're all set, you should have device list and device control options
 
 
 ###So far :
@@ -31,4 +33,5 @@ The main program feature should be high modularity and portabillity.
 - Better encription
 - Performance optimization
 - Rewrite a program in a couple of languages [programming and human]
+- Triggers , to make event based device reaction [ currently in progress ] 
 - Add more drivers for different devices
