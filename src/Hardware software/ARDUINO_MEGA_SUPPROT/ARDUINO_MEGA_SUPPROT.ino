@@ -34,19 +34,8 @@ void setup() {
   sendAgain = millis(); //  not needed ? 
 }
 void loop() {
-  if (millis() - sendAgain > 100) { //send all states 
-    sendAgain = millis();
-    printDigitalStates(); // send states of all digital pins in form <ds>pin:value,pin1:value1,...</ds> and at client side user regex to pull inner data
-    delay(20); // leave a bit of time not needed so fast..it's still realtime 
-    printPwmStates();// send states of all pwm pins in form <pwm>pin:value,pin1:value1,...</pwm> 
-    delay(20);
-    printAnalogStates();// send states of all analog pins in form <an>pin:value,pin1:value1,...</an> 
-    delay(20);
-    printServoStates();// send states of all servos in form <servo>pin:angle,pin1:angle1,...</servo> 
-    delay(20);
-    discardBuffer(); // send to client so it can discard serial buffer.
-  }
-  if (Serial.available() > 0) { //serial data incoming
+
+    if (Serial.available() > 0) { //serial data incoming
     char input[INPUT_SIZE + 1]; // initialize input char array 
     memset(input, 0, sizeof(input)); //give it a bit of space 
     byte index = 0; // start filling it
@@ -105,7 +94,14 @@ void loop() {
           Serial.println("Wrong :P"); // means nothing, maybe say to program the function does not exist
         }
       delay(10);
-      Serial.flush();
+      
+    printDigitalStates(); // send states of all digital pins in form <ds>pin:value,pin1:value1,...</ds> and at client side user regex to pull inner data
+    delay(25); // leave a bit of time not needed so fast..it's still realtime 
+    printPwmStates();// send states of all pwm pins in form <pwm>pin:value,pin1:value1,...</pwm> 
+    delay(25);
+    printServoStates();// send states of all servos in form <servo>pin:angle,pin1:angle1,...</servo> 
+    delay(25);
+    Serial.flush();
       }
 
 
@@ -113,8 +109,10 @@ void loop() {
 
   }
 
-
-
+    printAnalogStates();// send states of all analog pins in form <an>pin:value,pin1:value1,...</an> 
+    delay(25);
+    discardBuffer(); // send to client so it can discard serial buffer.
+    delay(25);
 }
 void discardBuffer() {
   Serial.println("<clb></clb>"); // send to the client 

@@ -28,6 +28,8 @@ Public Class Device
     Private cont As Controller = GLOBALS.controller 'controller of our device
     Public stateLabel As Label 'current state in device manager
     Private devnameLabel As Label 'name of device in dev. mgr
+    Public lambdafi As Boolean 'is lambda running
+    Public anonymus As Thread 'lambda thread
     Public logstatechange As Boolean = True 'default of device is to log state change
     Public devstate_string As String = "" ' string that combines the pin states in right format to send to server and devmgr
     Public formula As String = "" 'formula to put input from controller trough. Ussualy used in analog devices to have meaningful output
@@ -133,7 +135,6 @@ Public Class Device
     End Function
 
     Private Function changeInnerState(dpin As Integer, state As String)
-
         If Me.dtype = DevType.BOOL Or Me.dtype = DevType.PWM Or Me.dtype = DevType.SENSOR Then 'one pin things
             If Not Me.devstate(0) = state Then 'if state changed
                 Me.devstate(0) = state
@@ -184,14 +185,32 @@ Public Class Device
         End If
         Return 0
     End Function
-    Public Function changeState(dev_id As String, state As String)
+    Public Sub changeState(dev_id As String, state As String)
         'do something based on state param, and device type
         state = state.Replace(vbCr, "").Replace(vbLf, "")
         If Me.devid = dev_id Then
+            Select Case dtype 'serves for return if same value, no need to bug the device
+                Case DevType.BOOL, DevType.PWM, DevType.SENSOR, DevType.SERVO, DevType.RGB
+                    If state.ToLower = devstate_string.ToLower Then
+                        Exit Sub
+                    End If
+                Case DevType.DOOR
+                    Select Case state
+                        Case "OTVORI"
+                            If devstate_string = "OTVORENO" Then
+                                Exit Sub
+                            End If
+                        Case "ZATVORI"
+                            If devstate_string = "ZATVORENO" Then
+                                Exit Sub
+                            End If
+                    End Select
+            End Select
             If Me.dtype = DevType.BOOL Then
                 If state = "0" Or state = "1" Then
 
 BooleanError:
+
                     okawait = True
                     timeout.reset()
                     spdriver.Send(String.Join(":", New String() {"digitalWrite", Me.pin(0), state}))
@@ -207,7 +226,7 @@ BooleanError:
             ElseIf Me.dtype = DevType.RGB Then
                 Try
                     Dim color As Color = ConvertToRbg(state)
-           
+
 RGBError_R:
                     okawait = True
                     timeout.reset()
@@ -282,12 +301,12 @@ PWM_Error:
                     End While
                     timeout.reset()
                 End If
+
             End If
         End If
 
 
-        Return False
-    End Function
+    End Sub
     Public Function processSM(msg As String) 'called from message processor
         Try
             Dim process() As String = msg.Split(",")
@@ -315,6 +334,5 @@ PWM_Error:
         Return True
     End Function
 
- 
 
 End Class

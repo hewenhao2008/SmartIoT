@@ -77,12 +77,12 @@ Public Class TCP_Handler
                     If Not clientSocket Is Nothing Then
                         clientSocket.Disconnect(False)
                     End If
-                    Throw New SocketException("Disconnected from server!")
+                    Throw New Exception("Disconnected from server!")
                 End If
             End If
             ReDim byteData(0) ' get bytedata to 0 again
             clientSocket.BeginReceive(byteData, 0, byteData.Length, SocketFlags.None, New AsyncCallback(AddressOf OnRecieve), clientSocket) 'recieve again
-        Catch e As SocketException
+        Catch e As Exception
             clientSocket.Dispose()
             elui.Log("Error : " & e.Message) 'log error
         End Try

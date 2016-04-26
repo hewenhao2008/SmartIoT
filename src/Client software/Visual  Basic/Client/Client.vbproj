@@ -138,6 +138,8 @@
     <Compile Include="Serial_Port_Driver.vb" />
     <Compile Include="TCP_Handler.vb" />
     <Compile Include="TimeItOut.vb" />
+    <Compile Include="Trigger.vb" />
+    <Compile Include="TriggerFunctions.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="DeviceManager.resx">

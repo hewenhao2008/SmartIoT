@@ -11,6 +11,19 @@ Public Class Elisium_UI
         End If
         dm.Populate_Device_List() 'after we connected to server, connected to device, populate device list from Database using DeviceManager class..
 
+        ''''testing triggers localy
+        Dim dev1 As Device = Nothing, dev2 As Device = Nothing
+        For Each dev As Device In devicelist.ToList
+            If dev.devid = 10 Then
+                dev1 = dev
+            End If
+            If dev.devid = 12 Then
+                dev2 = dev
+            End If
+        Next
+        glob_triggers.Add(New Trigger(dev1, ">", "1000", dev2, "0"))
+        glob_triggers.Add(New Trigger(dev1, "<", "10", dev2, "1", "BLINK", New Object() {dev2}))
+
     End Sub
 
 
@@ -40,7 +53,7 @@ Public Class Elisium_UI
             Invoke(New _Log(AddressOf Log), msg) ' if called from another thread invoke delegate
             Exit Sub
         End If
-        txtLog.Text &= msg & vbCrLf '' add text to text log
+        txtLog.AppendText(msg + vbCrLf) '' add text to text log
 
     End Sub
 

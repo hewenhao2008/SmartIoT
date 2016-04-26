@@ -28,7 +28,7 @@ Public Class Serial_Port_Driver
     End Sub
     Public Sub Send(msg As String)
         sp.Write(msg) 'writeline to serial port 
-        elui.Log("Sent to serial device : " & msg) 'log what we passed
+        elui.Log("SP : " & msg) 'log what we passed
     End Sub
     Public Sub clearbuffer()
         sp.DiscardInBuffer() 'clear in buffer 

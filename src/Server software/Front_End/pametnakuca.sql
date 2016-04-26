@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `user_login` (
 --
 
 INSERT INTO `user_login` (`uid`, `pass`) VALUES
-(1, 'cikcamokram98');
+(1, 'test1');
 
 --
 -- Indexes for dumped tables

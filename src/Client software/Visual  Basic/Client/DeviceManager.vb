@@ -49,13 +49,19 @@ Public Class DeviceManager
 
 
     End Sub
-    Private Sub devStateChanged(dev As Device, pin As Integer) 'some device changed state
+    Private Sub devStateChanged(dev As Device, pin As Integer) 'some device changed stat
         Server_Update_Device_List() 'update it's status on server
         dm.ChangeLabelText(dev.stateLabel, dev.devstate_string) 'change stateLabel text with devstate_string 
         If dev.logstatechange And devicescreated Then ''if device is logging , which all devices do except analog sensors (this can be changed but by default)
             elui.Log("Device: " & dev.devname & " changed state to: " & dev.devstate_string) 'log statechange
         End If
+        For Each trig As Trigger In glob_triggers
+            If trig.triggerDevice Is dev Or trig.triggeredDevice Is dev Then
+                Dim t As New Threading.Thread(AddressOf trig.changedDeviceTrigger)
+                t.Start()
 
+            End If
+        Next
     End Sub
     Public Sub Populate_Device_List() 'here we'll populate device list 
         Try 'try to connect to database and get devices
@@ -93,6 +99,10 @@ Public Class DeviceManager
     End Function
 
     Private Sub DeviceManager_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
+
+    End Sub
+
+    Private Sub Devices_Paint(sender As System.Object, e As System.Windows.Forms.PaintEventArgs) Handles Devices.Paint
 
     End Sub
 End Class

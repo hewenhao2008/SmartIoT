@@ -48,6 +48,7 @@ Module Message_Processor
                         dev.processSM(match.Groups(1).Value)
                     End If
                 End If
+            
             Next
         End If
         If msg.Contains("OK") Then '' device returned ok ? this doesn't work everytime .. loosing data is bug, so while's with this should have timeour
